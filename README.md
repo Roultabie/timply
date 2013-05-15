@@ -13,7 +13,8 @@ In your theme dir (by default themes) you must create html pages like this :
 </div>
 <!-- Start Tags -->
 <span>#{tag}</span>&nbsp;
-<!-- End Tags -->```
+<!-- End Tags -->
+```
 
 In your php file, call timply class, initialize, populate your object and return result. That's all !
 ```<?php
@@ -45,4 +46,5 @@ foreach ($tags as $value) {
 }
 
 return $page->returnHtml();
-?>```
+?>
+```
