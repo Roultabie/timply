@@ -3,8 +3,9 @@ TIMPLY
 
 Example
 -------
-In your theme dir (by default themes) you must create html pages like this :
-```<p>{title}</p>
+In your theme dir (by default: themes) you must create html pages like this :
+```
+<p>{title}</p>
 <div id="content">
     <!-- Start Content -->
     <h4>{elementtitle}</h4>
@@ -16,8 +17,9 @@ In your theme dir (by default themes) you must create html pages like this :
 <!-- End Tags -->
 ```
 
-In your php file, call timply class, initialize, populate your object and return result. That's all !
-```<?php
+In your php file, call timply class, initialize, populate your object and return html.
+```
+<?php
 //Optional
 //TIMPLY_DIR = 'themes/default/'
 require_once 'timply.php';
@@ -42,9 +44,23 @@ foreach ($content as $values) {
 }
 
 foreach ($tags as $value) {
-    $page->setElement("tag", $value, "Tags", TRUE);
+    $page->setElement("tag", $value, "Tags");
 }
 
 return $page->returnHtml();
 ?>
 ```
+
+The result :
+```
+<p>Timply class test</p>
+<div id="content">
+    <h4>Timply script</h4>
+    <p>This script can create pages with basic php elements.</p>
+    <h4>My first page</h4>
+    <p>Hello world ! It's my first page, generated with timply !</p>
+</div>
+<span>#timply</span>&nbsp;<span>#first</span>&nbsp;<span>#page</span>&nbsp;<span>#github</span>&nbsp;
+```
+
+That's all !
