@@ -4,7 +4,7 @@ TIMPLY
 Example
 -------
 In your theme dir (by default themes) you must create html pages like this :
-``<p>{title}</p>
+```<p>{title}</p>
 <div id="content">
     <!-- Start Content -->
     <h4>{elementtitle}</h4>
@@ -13,11 +13,10 @@ In your theme dir (by default themes) you must create html pages like this :
 </div>
 <!-- Start Tags -->
 <span>#{tag}</span>&nbsp;
-<!-- End Tags -->``
+<!-- End Tags -->```
 
 In your php file, call timply class, initialize, populate your object and return result. That's all !
-``
-<?php
+```<?php
 //Optional
 //TIMPLY_DIR = 'themes/default/'
 require_once 'timply.php';
@@ -46,4 +45,4 @@ foreach ($tags as $value) {
 }
 
 return $page->returnHtml();
-?>``
+?>```
