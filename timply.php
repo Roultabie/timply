@@ -1,12 +1,12 @@
 <?php
 /**
-* Timply class
-*
-* Genarate webpage from html sources
-*                             
-* @package     Timply
-* @author      Daniel Douat <daniel.douat@aelys-info.fr>
-* @link        http://www.aelys-info.fr
+ * Timply class
+ *
+ * Genarate webpage from html sources
+ *                             
+ * @package     Timply
+ * @author      Daniel Douat <daniel.douat@aelys-info.fr>
+ * @link        http://www.aelys-info.fr
  */
 class timply
 {
@@ -24,13 +24,13 @@ class timply
         $this->setBlockList();
     }
     /**
-    * Create an array with element name to replace by datas
-    * @access   public
-    * @param    string element name to replace
-    * @param    string datas
-    * @param    string bock name if elements to replace are in a loop
-    * @return   void
-    */
+     * Create an array with element name to replace by datas
+     * @access   public
+     * @param    string element name to replace
+     * @param    string datas
+     * @param    string bock name if elements to replace are in a loop
+     * @return   void
+     */
     public function setElement($element, $data, $block = "")
     {
         if (!empty($block)) {
@@ -42,10 +42,10 @@ class timply
     }
 
     /**
-    * Return the result in HTML
-    * @access   public
-    * @return   string html result
-    */
+     * Return the result in HTML
+     * @access   public
+     * @return   string html result
+     */
     public function returnHtml()
     {
         $this->addBlock();
@@ -58,13 +58,13 @@ class timply
     // Start # private functions ----------------------------------------------  
 
     /**
-    * Create an array with elements replaced by datas only for blocks
-    * @access   private
-    * @param    string element name to replace
-    * @param    string datas
-    * @param    string bock name
-    * @return   void
-    */
+     * Create an array with elements replaced by datas only for blocks
+     * @access   private
+     * @param    string element name to replace
+     * @param    string datas
+     * @param    string bock name
+     * @return   void
+     */
     private function setBlock($element, $data, $block)
     {
         if ((empty($this->block[$block])) || ($element == $this->firstElement)) {
@@ -75,10 +75,10 @@ class timply
     }
 
     /**
-    * Replace elements of block (created by setBlockList function) by datas presents on $this->block array
-    * @access   private
-    * @return   void
-    */
+     * Replace elements of block (created by setBlockList function) by datas presents on $this->block array
+     * @access   private
+     * @return   void
+     */
     private function addBlock()
     {
         if (is_array($this->block)) {
@@ -91,26 +91,26 @@ class timply
     }
 
     /**
-    * Replace elements from datas presents on $this->element array
-    * @access   private
-    * @return   void
-    */
+     * Replace elements from datas presents on $this->element array
+     * @access   private
+     * @return   void
+     */
     private function addElement()
     {
         if (is_array($this->element)) {
-            $file = $this->getFile();
             foreach ($this->element as $key => $data) {
+                $file = $this->getFile();
                 $this->setFile(str_replace('{' . $key . '}', $data, $file));
             }
         }
     }
 
     /**
-    * Return html elements from blocks presents on template
-    * @access   private
-    * @param    string block name
-    * @return   string html structure from blocks
-    */
+     * Return html elements from blocks presents on template
+     * @access   private
+     * @param    string block name
+     * @return   string html structure from blocks
+     */
     private function getBlock($blockName)
     {
         return $this->blockList[$blockName];
@@ -122,11 +122,11 @@ class timply
     }
 
     /**
-    * Create a string from templates / replaces the string with the string processed
-    * @access   private
-    * @param    string datas processed
-    * @return   void
-    */
+     * Create a string from templates / replaces the string with the string processed
+     * @access   private
+     * @param    string datas processed
+     * @return   void
+     */
     private function setFile($datas = "")
     {
         if (empty($datas)) {
@@ -138,10 +138,10 @@ class timply
     }
 
     /**
-    * Create a blocklist array with datas / elements to replace and rewrite file with blockname instead of elements
-    * @access   private
-    * @return   void
-    */
+     * Create a blocklist array with datas / elements to replace and rewrite file with blockname instead of elements
+     * @access   private
+     * @return   void
+     */
     private function setBlockList()
     {
         $pattern = "|(<!-- Start (?P<blockName>[\w\d]+) -->)(?P<blockElements>.*?)(<!-- End \\2 -->)|ismU";
