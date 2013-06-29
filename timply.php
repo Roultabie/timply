@@ -14,15 +14,17 @@ class timply
     private $blockList;
     private $file;
     private $firstElement;
-    public $block;
+    private $fileName;
+    public  $block;
     
     function __construct($source)
     {
-        $this->themeDir = (TIMPLY_DIR) ? TIMPLY_DIR : 'themes/default/';
-        $this->fileName = $source;
+        self::$themeDir = (TIMPLY_DIR) ? TIMPLY_DIR : 'themes/default/';
+        self::$fileName = $source;
         $this->setFile();
         $this->setBlockList();
     }
+
     /**
      * Create an array with element name to replace by datas
      * @access   public
@@ -130,7 +132,7 @@ class timply
     private function setFile($datas = "")
     {
         if (empty($datas)) {
-            $this->file = file_get_contents($this->themeDir . $this->fileName);
+            $this->file = file_get_contents(self::$themeDir . self::$fileName);
         }
         else {
             $this->file = $datas;
