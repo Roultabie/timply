@@ -1,5 +1,11 @@
-TIMPLY
-======
+#Timply
+
+Simple system to use themes in your PHP projects.
+
+##Features
+
+Easy way to load data in theme  
+Can manage language with several dictionnaries (like en_EN & fr_FR)  
 
 Example
 -------
@@ -17,14 +23,27 @@ In your theme dir (by default: themes) you must create html pages like this :
 <!-- End Tags -->
 ```
 
+If you want use language support, create a lang file (here en_EN.php) like :
+```
+<?php
+$lang['by']  = "by";
+$lang['for'] = "for"
+?>
+```
+
 In your php file, call timply class, initialize, populate your object and return html.
 ```
 <?php
-//Optional
-//TIMPLY_DIR = 'themes/default/'
 require_once 'timply.php';
 
-$page = new timply('page.html');
+timply::setDir('themes/default');
+timply::setFileName('page.html');
+timply::addDictionary('en_EN.php');
+// several dictionaries can be loaded
+timply::addDictionary('myApp/en_EN.php');
+timply::addDictionary('myOtherApp/fr_FR.php');
+
+$page = new timply();
 
 $content[0]['title'] = "Timply script";
 $content[0]['text']  = "This script can create pages with basic php elements.";
