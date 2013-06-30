@@ -10,16 +10,17 @@
  */
 class timply
 {
-    private $themeDir;
+    private static $themeDir;
+    private static $fileName;
+    private static $dictionary;
     private $blockList;
     private $file;
     private $firstElement;
-    private $fileName;
     public  $block;
     
     function __construct($source)
     {
-        self::$themeDir = (TIMPLY_DIR) ? TIMPLY_DIR : 'themes/default/';
+        self::$themeDir = 'themes/default/';
         self::$fileName = $source;
         $this->setFile();
         $this->setBlockList();
@@ -52,7 +53,23 @@ class timply
     {
         $this->addBlock();
         $this->addElement();
+        if (is_array(self::$dictionary)) {
+            $this->traduct();
+        }
         return $this->getFile();
+    }
+
+    public static function addDictionary($file)
+    {
+        if (file_exists($file)) {
+            include $file;
+            if (!is_array(self::$dictionary)) {
+                self::$dictionary = array();
+            }
+            if (is_array($lang)) {
+                self::$dictionary = array_merge(self::$dictionary, $lang);
+            }
+        }
     }
 
     // End # public functions -------------------------------------------------
@@ -154,6 +171,22 @@ class timply
             // and replace Content block by [Content] flag in the file.
             $this->setFile(str_replace($matches[0][$i], "[" . $matches['blockName'][$i]. "]", $this->getFile()));
         }
+    }
+
+    /**
+     * Replace [trad::] blocks by dictionary entries]
+     * @return void
+     */
+    private function traduct()
+    {
+        $file    = $this->getFile();
+        $pattern = '/\[trad::([\d\w\-_]+)\]/';
+        preg_match_all($pattern, $file, $matches);
+        $count   = count($matches[0]);
+        for ($i = 0; $i < $count; $i++) {
+            $file = str_replace($matches[0][$i], self::$dictionary[$matches[1][$i]], $file);
+        }
+        $this->setFile($file);
     }
 }
 ?>
