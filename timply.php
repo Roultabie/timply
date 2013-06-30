@@ -18,12 +18,38 @@ class timply
     private $firstElement;
     public  $block;
     
-    function __construct($source)
+    function __construct()
     {
-        self::$themeDir = 'themes/default/';
-        self::$fileName = $source;
         $this->setFile();
         $this->setBlockList();
+    }
+
+
+    /**
+     * Load theme uri
+     * @param string $uri dir of theme
+     */
+    public static function setUri($uri)
+    {
+        if (!empty($uri)) {
+            $length    = strlen($url);
+            $lastSlash = strpos($url, '/') + 1;
+            if ($lenght !== $lastSlash) {
+                $uri = $uri . '/';
+            }
+        }
+        self::$themeDir = $uri;
+    }
+
+    /**
+     * Load file of them
+     * @param string $fileName filename
+     */
+    public static function setFileName($fileName)
+    {
+        if (!empty($fileName)) {
+            self::$fileName = $fileName;
+        }
     }
 
     /**
@@ -149,7 +175,9 @@ class timply
     private function setFile($datas = "")
     {
         if (empty($datas)) {
-            $this->file = file_get_contents(self::$themeDir . self::$fileName);
+            if (file_exists(self::$themeDir . self::$fileName)) {
+                $this->file = file_get_contents(self::$themeDir . self::$fileName);
+            }
         }
         else {
             $this->file = $datas;
