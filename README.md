@@ -15,6 +15,7 @@ In your theme dir (by default: themes) you must create html pages like this :
 <div id="content">
     <!-- Start Content -->
     <h4>{elementtitle}</h4>
+    <em>[trad::by] Daniel Douat</em>
     <p>{elementtext}</p>
     <!-- End Content -->
 </div>
@@ -75,6 +76,7 @@ The result :
 <p>Timply class test</p>
 <div id="content">
     <h4>Timply script</h4>
+    <em>by Daniel Douat</em>
     <p>This script can create pages with basic php elements.</p>
     <h4>My first page</h4>
     <p>Hello world ! It's my first page, generated with timply !</p>
