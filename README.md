@@ -99,9 +99,8 @@ $tags[]['tag'] = "method";
 $tags[]['tag'] = "array";
 $tags[]['tag'] = "wtf";
 
-foreach ($tags as $value) {
-    $page->setElement("tag", $value, "Tags");
-}
+$page->setElements($content, "Content");
+$page->setElements($tags, "Tags");
 
 return $page->returnHtml();
 ?>
