@@ -84,6 +84,42 @@ The result :
 <span>#timply</span>&nbsp;<span>#first</span>&nbsp;<span>#page</span>&nbsp;<span>#github</span>&nbsp;
 ```
 
+_or_
+
+
+```
+<?php
+$content[0]['title'] = "New timply method";
+$content[0]['text']  = "Now you can pass array for elements, timply works for you.";
+$content[1]['title'] = "Look at this !";
+$content[1]['text']  = "A duck is walking on timply !";
+
+$tags[]['tag'] = "duck";
+$tags[]['tag'] = "method";
+$tags[]['tag'] = "array";
+$tags[]['tag'] = "wtf";
+
+foreach ($tags as $value) {
+    $page->setElement("tag", $value, "Tags");
+}
+
+return $page->returnHtml();
+?>
+```
+
+The result :
+```
+<p>Timply class test</p>
+<div id="content">
+    <h4>New timply method</h4>
+    <em>by Daniel Douat</em>
+    <p>Now you can pass array for elements, timply works for you.</p>
+    <h4>Look at this !</h4>
+    <p>A duck is walking on timply !</p>
+</div>
+<span>#duck</span>&nbsp;<span>#method</span>&nbsp;<span>#array</span>&nbsp;<span>#wtf</span>&nbsp;
+```
+
 That's all !
 
 ##Licence :

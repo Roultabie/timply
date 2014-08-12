@@ -71,6 +71,23 @@ class timply
     }
 
     /**
+     * For elements in a loop. Give him an array and it works for you
+     * @access   public
+     * @param    array $data  $array[] = array('elementName' => 'elementValue');
+     * @param    string $block block name of elements
+     */
+    public function setElements($datas, $block)
+    {
+        if (is_array($datas) && !empty($block)) {
+            foreach ($datas as $elements) {
+                foreach ($elements as $element => $data) {
+                    $this->setElement($element, $data, $block);
+                }
+            }
+        }
+    }
+
+    /**
      * Return the result in HTML
      * @access   public
      * @return   string html result
