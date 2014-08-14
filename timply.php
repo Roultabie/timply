@@ -59,12 +59,7 @@ class timply
      */
     public function setElement($element, $data, $block = "")
     {
-        if (!empty($block)) {
-            $this->setBlock($element, $data, $block);
-        }
-        else {
-            $this->element[$element] = $data;
-        }
+        (!empty($block)) ? $this->setBlock($element, $data, $block) : $this->setElement[$element] = $data;
     }
 
     /**
