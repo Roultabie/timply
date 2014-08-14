@@ -88,9 +88,7 @@ class timply
     {
         $this->addBlock();
         $this->addElement();
-        if (is_array(self::$dictionary)) {
-            $this->traduct();
-        }
+        $this->traduct();
         $this->cleanFile();
         return $this->getFile();
     }
@@ -225,34 +223,36 @@ class timply
      */
     private function traduct()
     {
-        mb_internal_encoding('UTF-8');
-        $file    = $this->getFile();
-        $pattern = '/\[trad::([\d\w\-_]+):{0,2}(F|AF|A){0,1}\]/';
-        preg_match_all($pattern, $file, $matches);
-        $count   = count($matches[0]);
-        for ($i = 0; $i < $count; $i++) {
-            $string = self::$dictionary[$matches[1][$i]];
-            if (!empty($string)) {
-                if ($matches[2][$i] === 'F') {
-                    // Not using ucfirst to preserve locales
-                    $traduction = mb_strtoupper(mb_substr($string, 0, 1), 'UTF-8') . mb_substr($string, 1);
-                }
-                elseif ($matches[2][$i] === 'AF') {
-                    $traduction = mb_convert_case($string, MB_CASE_TITLE, 'UTF-8');
-                }
-                elseif ($matches[2][$i] === 'A') {
-                    $traduction = mb_convert_case($string, MB_CASE_UPPER, 'UTF-8');
+        if (is_array(self::$dictionary)) {
+            mb_internal_encoding('UTF-8');
+            $file    = $this->getFile();
+            $pattern = '/\[trad::([\d\w\-_]+):{0,2}(F|AF|A){0,1}\]/';
+            preg_match_all($pattern, $file, $matches);
+            $count   = count($matches[0]);
+            for ($i = 0; $i < $count; $i++) {
+                $string = self::$dictionary[$matches[1][$i]];
+                if (!empty($string)) {
+                    if ($matches[2][$i] === 'F') {
+                        // Not using ucfirst to preserve locales
+                        $traduction = mb_strtoupper(mb_substr($string, 0, 1), 'UTF-8') . mb_substr($string, 1);
+                    }
+                    elseif ($matches[2][$i] === 'AF') {
+                        $traduction = mb_convert_case($string, MB_CASE_TITLE, 'UTF-8');
+                    }
+                    elseif ($matches[2][$i] === 'A') {
+                        $traduction = mb_convert_case($string, MB_CASE_UPPER, 'UTF-8');
+                    }
+                    else {
+                        $traduction = $string;
+                    }
                 }
                 else {
-                    $traduction = $string;
+                    $traduction = str_replace('_', ' ', $matches[1][$i]);
                 }
+                $file = str_replace($matches[0][$i], $traduction, $file);
             }
-            else {
-                $traduction = str_replace('_', ' ', $matches[1][$i]);
-            }
-            $file = str_replace($matches[0][$i], $traduction, $file);
+            $this->setFile($file);
         }
-        $this->setFile($file);
     }
 }
 ?>
