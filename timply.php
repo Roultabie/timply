@@ -32,11 +32,8 @@ class timply
     public static function setUri($uri)
     {
         if (!empty($uri)) {
-            $length    = strlen($url);
-            $lastSlash = strpos($url, '/') + 1;
-            if ($lenght !== $lastSlash) {
-                $uri = $uri . '/';
-            }
+            rtrim($uri, '/');
+            $uri = $uri . '/';
         }
         self::$themeDir = $uri;
     }
