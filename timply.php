@@ -232,18 +232,20 @@ class timply
             for ($i = 0; $i < $count; $i++) {
                 $string = self::$dictionary[$matches[1][$i]];
                 if (!empty($string)) {
-                    if ($matches[2][$i] === 'F') {
-                        // Not using ucfirst to preserve locales
-                        $traduction = mb_strtoupper(mb_substr($string, 0, 1), 'UTF-8') . mb_substr($string, 1);
-                    }
-                    elseif ($matches[2][$i] === 'AF') {
-                        $traduction = mb_convert_case($string, MB_CASE_TITLE, 'UTF-8');
-                    }
-                    elseif ($matches[2][$i] === 'A') {
-                        $traduction = mb_convert_case($string, MB_CASE_UPPER, 'UTF-8');
-                    }
-                    else {
-                        $traduction = $string;
+                    switch ($matches[2][$i]) {
+                        case 'F':
+                            // Not using ucfirst to preserve locales
+                            $traduction = mb_strtoupper(mb_substr($string, 0, 1), 'UTF-8') . mb_substr($string, 1);
+                            break;
+                        case 'AF':
+                            $traduction = mb_convert_case($string, MB_CASE_TITLE, 'UTF-8');
+                            break;
+                        case 'A':
+                            $traduction = mb_convert_case($string, MB_CASE_UPPER, 'UTF-8');
+                            break;
+                        default:
+                            $traduction = $string;
+                            break;
                     }
                 }
                 else {
