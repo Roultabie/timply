@@ -94,6 +94,10 @@ class timply
         return $this->getFile();
     }
 
+    /**
+     * Load new dictionary
+     * @param string $file php file of dictionary, format like $lang['word'] = mot
+     */
     public static function addDictionary($file)
     {
         if (file_exists($file)) {
