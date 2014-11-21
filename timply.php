@@ -193,6 +193,11 @@ class timply
         }
     }
 
+    /**
+     * Add content of external files tagged like <!-- Include myfile.ext -->
+     * @access   private
+     * @return   void
+     */
     private function includeFiles()
     {
         $file    = $this->getFile();
