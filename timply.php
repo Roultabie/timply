@@ -21,6 +21,7 @@ class timply
     function __construct()
     {
         $this->setFile();
+        $this->includeFiles();
         $this->setBlockList();
     }
 
@@ -190,6 +191,25 @@ class timply
         else {
             $this->file = $datas;
         }
+    }
+
+    private function includeFiles()
+    {
+        $file    = $this->getFile();
+        $pattern = "|(<!-- Include (?P<include>[\w\d]+\.[\w\d]+) -->)|iU";
+        preg_match_all($pattern, $file, $matches);
+        if (is_array($matches['include'])) {
+            foreach ($matches['include'] as $key => $toInclude) {
+                if (file_exists(self::$themeDir . $toInclude)) {
+                    $content = file_get_contents(self::$themeDir . $toInclude);
+                    $file    = str_replace($matches[0][$key], $content, $file);
+                }
+                else {
+                    $file = str_replace($matches[0][$key], '', $file);
+                }
+            }
+        }
+        $this->setFile($file);
     }
 
     /**
