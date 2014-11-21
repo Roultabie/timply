@@ -11,7 +11,7 @@ Example
 -------
 In your theme dir (by default: themes) you must create html pages like this :
 ```
-<!-- Include Header.html -->
+<!-- Include header.html -->
 <p>{title}</p>
 <div id="content">
     <!-- Start Content -->
