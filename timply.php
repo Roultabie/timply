@@ -238,6 +238,10 @@ class timply
         }
     }
 
+    /**
+     * Remove working tags from content
+     * @return   void
+     */
     private function cleanFile()
     {
         $file     = $this->getFile();
