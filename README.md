@@ -11,6 +11,7 @@ Example
 -------
 In your theme dir (by default: themes) you must create html pages like this :
 ```
+<!-- Include Header.html -->
 <p>{title}</p>
 <div id="content">
     <!-- Start Content -->
@@ -22,6 +23,11 @@ In your theme dir (by default: themes) you must create html pages like this :
 <!-- Start Tags -->
 <span>#{tag}</span>&nbsp;
 <!-- End Tags -->
+```
+
+For this example header.html :
+```
+<h1>Header</h1>
 ```
 
 If you want use language support, create a lang file (here en_EN.php) like :
@@ -37,7 +43,7 @@ In your php file, call timply class, initialize, populate your object and return
 <?php
 require_once 'timply.php';
 
-timply::setDir('themes/default');
+timply::setUri('themes/default');
 timply::setFileName('page.html');
 timply::addDictionary('en_EN.php');
 // several dictionaries can be loaded
@@ -73,6 +79,7 @@ return $page->returnHtml();
 
 The result :
 ```
+<h1>Header</h1>
 <p>Timply class test</p>
 <div id="content">
     <h4>Timply script</h4>
@@ -108,6 +115,7 @@ return $page->returnHtml();
 
 The result :
 ```
+<h1>Header</h1>
 <p>Timply class test</p>
 <div id="content">
     <h4>New timply method</h4>
