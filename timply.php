@@ -170,6 +170,10 @@ class timply
         return $this->blockList[$blockName];
     }
 
+    /**
+     * Return current content state of data file
+     * @return   string current data state
+     */
     private function getFile()
     {
         return $this->file;
