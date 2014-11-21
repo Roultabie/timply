@@ -131,8 +131,10 @@ That's all !
 
 ##Licence :
 
+Timply is distributed under the BSD licence:
+
 Copyright (c) 2013-2014 [Daniel Douat](http://daniel.douat.fr)
-All rights reserved.
+All rights reserved.  
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
 
