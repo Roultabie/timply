@@ -5,8 +5,8 @@
  * Genarate webpage from html sources
  *
  * @package     Timply
- * @author      Daniel Douat <daniel.douat@aelys-info.fr>
- * @link        http://www.aelys-info.fr
+ * @author      Daniel Douat <daniel@gorgones.net>
+ * @link        http://daniel.douat.fr
  */
 class timply
 {
