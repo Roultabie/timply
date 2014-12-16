@@ -11,15 +11,16 @@
 class timply
 {
     private static $themeDir;
-    private static $fileName;
     private static $dictionary;
     private $blockList;
     private $file;
     private $firstElement;
     public  $block;
+    public  $fileName;
 
-    function __construct()
+    function __construct($fileName)
     {
+        $this->setFileName($fileName);
         $this->setFile();
         $this->includeFiles();
         $this->setBlockList();
@@ -37,17 +38,6 @@ class timply
             $uri = $uri . '/';
         }
         self::$themeDir = $uri;
-    }
-
-    /**
-     * Load file of them
-     * @param string $fileName filename
-     */
-    public static function setFileName($fileName)
-    {
-        if (!empty($fileName)) {
-            self::$fileName = $fileName;
-        }
     }
 
     /**
@@ -192,12 +182,23 @@ class timply
     private function setFile($datas = "")
     {
         if (empty($datas)) {
-            if (file_exists(self::$themeDir . self::$fileName)) {
-                $this->file = file_get_contents(self::$themeDir . self::$fileName);
+            if (file_exists(self::$themeDir . $this->fileName)) {
+                $this->file = file_get_contents(self::$themeDir . $this->fileName);
             }
         }
         else {
             $this->file = $datas;
+        }
+    }
+
+    /**
+     * Load file of them
+     * @param string $fileName filename
+     */
+    private function setFileName($fileName)
+    {
+        if (!empty($fileName)) {
+            $this->fileName = $fileName;
         }
     }
 

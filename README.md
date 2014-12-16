@@ -44,13 +44,12 @@ In your php file, call timply class, initialize, populate your object and return
 require_once 'timply.php';
 
 timply::setUri('themes/default');
-timply::setFileName('page.html');
 timply::addDictionary('en_EN.php');
 // several dictionaries can be loaded
 timply::addDictionary('myApp/en_EN.php');
 timply::addDictionary('myOtherApp/fr_FR.php');
 
-$page = new timply();
+$page = new timply('page.html');
 
 $content[0]['title'] = "Timply script";
 $content[0]['text']  = "This script can create pages with basic php elements.";
