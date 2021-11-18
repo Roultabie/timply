@@ -1,8 +1,8 @@
-#Timply
+# Timply
 
 Simple system to use themes in your PHP projects.
 
-##Features
+## Features
 
 Easy way to load data in theme  
 Can manage language with several dictionnaries (like en_EN & fr_FR)  
@@ -128,7 +128,7 @@ The result :
 
 That's all !
 
-##Licence :
+## Licence :
 
 Timply is distributed under the BSD licence:
 
